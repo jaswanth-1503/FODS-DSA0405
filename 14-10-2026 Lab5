@@ -1,0 +1,13 @@
+import numpy as np
+car1 = np.array([15, 16, 14, 15, 16])
+car2 = np.array([18, 20, 19, 21, 22])
+print("Car Model 1 Fuel Efficiency:")
+print(car1)
+print("Car Model 2 Fuel Efficiency:")
+print(car2)
+avg1 = np.mean(car1)
+avg2 = np.mean(car2)
+improvement = ((avg2 - avg1) / avg1) * 100
+print("Average Fuel Efficiency of Car Model 1:", avg1, "km/l")
+print("Average Fuel Efficiency of Car Model 2:", avg2, "km/l")
+print("Percentage Improvement:", improvement, "%")
