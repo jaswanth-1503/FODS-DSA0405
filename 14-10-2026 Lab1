@@ -1,0 +1,14 @@
+import numpy as np
+marks = np.array([
+    [85, 90, 78, 88],
+    [75, 80, 85, 90],
+    [92, 88, 95, 85],
+    [80, 85, 90, 95]
+])
+average = np.mean(marks, axis=0)
+print("Average marks of each subject:")
+for i in range(4):
+    print("Subject", i + 1, ":", average[i])
+highest = np.argmax(average)
+print("Subject with highest average: Subject", highest + 1)
+print("Highest average marks:", average[highest])
