@@ -1,0 +1,17 @@
+import collections
+import re
+
+# Simulating reading from "sample_text.txt"
+sample_text = """
+Data science is an interdisciplinary field that uses scientific methods, processes,
+algorithms and systems to extract knowledge and insights from noisy, structured
+and unstructured data, and apply knowledge from data across a broad range of application domains.
+"""
+
+# Standardizing and cleaning words
+words = re.findall(r'\w+', sample_text.lower())
+word_freq = collections.Counter(words)
+
+print("Word Frequency Distribution (Top 10):")
+for word, freq in word_freq.most_common(10):
+    print(f"{word}: {freq}")
