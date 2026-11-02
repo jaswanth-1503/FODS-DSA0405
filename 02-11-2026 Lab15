@@ -1,0 +1,8 @@
+post_likes = pd.DataFrame({
+    'post_id': range(101, 116),
+    'likes': [150, 20, 150, 45, 20, 300, 45, 150, 20, 20, 45, 300, 150, 45, 20]
+})
+
+likes_dist = post_likes['likes'].value_counts().sort_index()
+print("Frequency Distribution of Likes:")
+print(likes_dist)
