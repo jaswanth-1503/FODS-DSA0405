@@ -1,0 +1,10 @@
+# Mock dataset
+sales_data_df = pd.DataFrame({
+    'product_name': ['Product A', 'Product B', 'Product A', 'Product C', 'Product B', 'Product D', 'Product E', 'Product F', 'Product A'],
+    'quantity_sold': [10, 15, 5, 20, 8, 12, 3, 7, 14]
+})
+
+# Top 5 products sold the most (by aggregate quantity)
+top_5_products = sales_data_df.groupby('product_name')['quantity_sold'].sum().nlargest(5)
+print("Top 5 products sold:")
+print(top_5_products)
