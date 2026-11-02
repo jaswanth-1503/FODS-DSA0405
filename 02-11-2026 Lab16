@@ -1,0 +1,16 @@
+reviews = [
+    "Great product, highly recommend!",
+    "Excellent quality, fast delivery, highly satisfied.",
+    "Average product, okay quality but delivery was slow.",
+    "Great value for money."
+]
+
+# Combine and tokenize
+all_words = []
+for r in reviews:
+    all_words.extend(re.findall(r'\w+', r.lower()))
+
+reviews_word_freq = collections.Counter(all_words)
+print("Review Word Frequency Distribution (Top 10):")
+for word, freq in reviews_word_freq.most_common(10):
+    print(f"{word}: {freq}")
