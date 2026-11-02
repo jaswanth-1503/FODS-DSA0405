@@ -1,0 +1,41 @@
+# Simulating creating 'data.csv' first
+mock_feedback = pd.DataFrame({
+    'feedback': [
+        'The product is very good and useful.',
+        'Worst experience. The delivery was super slow!',
+        'Excellent quality, and the customer support is amazing.',
+        'Good value, is it worth the price? Yes, it is.',
+        'Useful product, and fast delivery.'
+    ]
+})
+mock_feedback.to_csv('data.csv', index=False)
+
+# Load dataset
+df_feedback = pd.read_csv('data.csv')
+
+# Stopwords dictionary list
+stopwords = {'is', 'the', 'and', 'it', 'was', 'to', 'for', 'very', 'with', 'on', 'a', 'this', 'in', 'of'}
+
+def preprocess_text(text):
+    text = re.sub(r'[^\w\s]', '', text.lower()) # Lowercase & remove punctuation
+    filtered_words = [word for word in text.split() if word not in stopwords]
+    return filtered_words
+
+all_processed_words = []
+for feedback in df_feedback['feedback']:
+    all_processed_words.extend(preprocess_text(feedback))
+
+feedback_word_freq = collections.Counter(all_processed_words)
+
+# Ask user input N (simulated as 5 here)
+N = 5
+top_n = feedback_word_freq.most_common(N)
+
+# Plot bar chart
+words_list, counts_list = zip(*top_n)
+plt.figure(figsize=(8, 4))
+plt.bar(words_list, counts_list, color='purple')
+plt.title(f'Top {N} Most Frequent Feedback Words')
+plt.xlabel('Words')
+plt.ylabel('Frequencies')
+plt.show()
