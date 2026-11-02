@@ -1,0 +1,21 @@
+property_data = pd.DataFrame({
+    'property_id': [1, 2, 3, 4, 5],
+    'location': ['Downtown', 'Suburbs', 'Downtown', 'Suburbs', 'Rural'],
+    'bedrooms': [3, 5, 2, 6, 4],
+    'area_sqft': [1500, 3500, 950, 4200, 2100],
+    'listing_price': [450000, 600000, 310000, 850000, 250000]
+})
+
+# 1. Average price by location
+avg_price_by_loc = property_data.groupby('location')['listing_price'].mean()
+
+# 2. Number of properties with > 4 bedrooms
+prop_4plus_beds = (property_data['bedrooms'] > 4).sum()
+
+# 3. Property with the largest area
+largest_property = property_data.loc[property_data['area_sqft'].idxmax()]
+
+print("1. Average listing price by location:")
+print(avg_price_by_loc)
+print(f"\n2. Number of properties with > 4 bedrooms: {prop_4plus_beds}")
+print(f"\n3. Property with the largest area: ID {largest_property['property_id']} in {largest_property['location']} ({largest_property['area_sqft']} sqft)")
