@@ -1,0 +1,16 @@
+# Simulating random blood pressure reduction values for 50 patients (25 drug, 25 placebo)
+np.random.seed(42)
+drug_group = np.random.normal(loc=15, scale=5, size=25)      # Mean reduction expected ~15
+placebo_group = np.random.normal(loc=4, scale=4, size=25)    # Mean reduction expected ~4
+
+def calculate_95_ci(data):
+    mean = np.mean(data)
+    sem = stats.sem(data)  # Standard error of the mean
+    ci = stats.t.interval(0.95, len(data)-1, loc=mean, scale=sem)
+    return ci
+
+drug_ci = calculate_95_ci(drug_group)
+placebo_ci = calculate_95_ci(placebo_group)
+
+print(f"Drug Group 95% CI for Mean BP Reduction: ({drug_ci[0]:.2f}, {drug_ci[1]:.2f})")
+print(f"Placebo Group 95% CI for Mean BP Reduction: ({placebo_ci[0]:.2f}, {placebo_ci[1]:.2f})")
