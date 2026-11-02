@@ -1,0 +1,32 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+days = np.arange(1, 31)
+# Mock sales showing a trend with some noise
+sales_prediction = 200 + 5 * days + np.random.normal(0, 15, size=30)
+
+plt.figure(figsize=(15, 4))
+
+# 1. Line Plot
+plt.subplot(1, 3, 1)
+plt.plot(days, sales_prediction, color='blue', marker='o', linestyle='-')
+plt.title('Sales Trend Over Month (Line Plot)')
+plt.xlabel('Day of Month')
+plt.ylabel('Sales ($)')
+
+# 2. Scatter Plot
+plt.subplot(1, 3, 2)
+plt.scatter(days, sales_prediction, color='red', alpha=0.7)
+plt.title('Sales Predict (Scatter Plot)')
+plt.xlabel('Day of Month')
+plt.ylabel('Sales ($)')
+
+# 3. Bar Plot
+plt.subplot(1, 3, 3)
+plt.bar(days, sales_prediction, color='green', alpha=0.7)
+plt.title('Sales Predict (Bar Plot)')
+plt.xlabel('Day of Month')
+plt.ylabel('Sales ($)')
+
+plt.tight_layout()
+plt.show()
