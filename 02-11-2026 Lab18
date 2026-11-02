@@ -1,0 +1,37 @@
+import scipy.stats as stats
+
+# Mock data for 18 adults
+clinical_data = pd.DataFrame({
+    'age': [23, 23, 27, 27, 39, 41, 47, 49, 50, 52, 54, 54, 56, 57, 58, 58, 60, 61],
+    'pct_fat': [9.5, 26.5, 7.8, 17.8, 31.4, 25.9, 27.4, 27.2, 31.2, 34.6, 42.5, 28.8, 33.4, 30.2, 34.1, 32.9, 41.2, 35.7]
+})
+
+# 1. Calculate Descriptive Stats
+stats_summary = clinical_data.describe().loc[['mean', '50%', 'std']]
+stats_summary.rename(index={'50%': 'median'}, inplace=True)
+print(stats_summary)
+
+# 2. Boxplots
+plt.figure(figsize=(10, 4))
+plt.subplot(1, 3, 1)
+plt.boxplot(clinical_data['age'])
+plt.title('Age Boxplot')
+
+plt.subplot(1, 3, 2)
+plt.boxplot(clinical_data['pct_fat'])
+plt.title('% Fat Boxplot')
+
+# 3. Scatter Plot
+plt.subplot(1, 3, 3)
+plt.scatter(clinical_data['age'], clinical_data['pct_fat'], color='navy')
+plt.title('Age vs % Fat Scatter')
+plt.xlabel('Age')
+plt.ylabel('% Fat')
+plt.tight_layout()
+plt.show()
+
+# 4. Q-Q Plot
+plt.figure(figsize=(5, 4))
+stats.probplot(clinical_data['pct_fat'], dist="norm", plot=plt)
+plt.title('Q-Q Plot (% Fat)')
+plt.show()
