@@ -1,0 +1,16 @@
+# Simulating conversion rates of Design A vs Design B
+# Let's assume daily conversion rates recorded over a week
+design_a = np.array([0.12, 0.14, 0.11, 0.13, 0.15, 0.12, 0.14])
+design_b = np.array([0.16, 0.18, 0.15, 0.17, 0.19, 0.16, 0.18])
+
+# Perform a Two-Sample Independent t-test
+t_stat, p_value = stats.ttest_ind(design_a, design_b, equal_var=True)
+
+print(f"T-Statistic: {t_stat:.4f}")
+print(f"P-Value: {p_value:.6f}")
+
+alpha = 0.05
+if p_value < alpha:
+    print("Result: There IS a statistically significant difference in conversion rates between design A and design B.")
+else:
+    print("Result: There is NO statistically significant difference in conversion rates.")
