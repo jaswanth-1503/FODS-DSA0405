@@ -1,0 +1,24 @@
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+temperature = [5, 7, 12, 16, 21, 25, 28, 27, 22, 16, 10, 6]  # in Celsius
+rainfall = [70, 60, 55, 45, 40, 30, 20, 25, 50, 65, 80, 75]     # in mm
+
+plt.figure(figsize=(12, 5))
+
+# 1. Line Plot - Temperature
+plt.subplot(1, 2, 1)
+plt.plot(months, temperature, color='orange', marker='s', label='Temp (°C)', linewidth=2)
+plt.title('Monthly Average Temperature')
+plt.xlabel('Month')
+plt.ylabel('Temperature (°C)')
+plt.grid(True, linestyle=':')
+
+# 2. Scatter Plot - Rainfall
+plt.subplot(1, 2, 2)
+plt.scatter(months, rainfall, color='teal', s=100, marker='D', label='Rainfall (mm)')
+plt.title('Monthly Rainfall Distribution')
+plt.xlabel('Month')
+plt.ylabel('Rainfall (mm)')
+plt.grid(True, linestyle=':')
+
+plt.tight_layout()
+plt.show()
